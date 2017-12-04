@@ -1,27 +1,44 @@
 abstract class EstadoAnimado extends Estado{
   
-  static final float s = 1.70158f;
+  static final float S = 1.70158f;
   
   private float _lineal, _cuadrada, _outBack, _inOutBack;
+  private boolean calcularLineal, calcularCuadrada, calcularOutBack, calcularInOutBack;
   
   EstadoAnimado( int tiempoIniciar, int tiempoFinalizar ){
     super( tiempoIniciar, tiempoFinalizar );
+    activarAnimaciones( true, true, true, true );
   }
   
-  //recibo los parametros como float, porque... le desconfio cuando tengo que dividir enteros
+  EstadoAnimado( int tiempoIniciar, int tiempoFinalizar, boolean lineal, boolean cuadrada, boolean outBack, boolean inOutBack ){
+    super( tiempoIniciar, tiempoFinalizar );
+    activarAnimaciones( lineal, cuadrada, outBack, inOutBack );
+  }
+  
+  void activarAnimaciones( boolean lineal, boolean cuadrada, boolean outBack, boolean inOutBack ){
+    calcularLineal = lineal;
+    calcularCuadrada = cuadrada;
+    calcularOutBack = outBack;
+    calcularInOutBack = inOutBack;
+  }
+  
   void calcularAnimaciones( float tiempoActual, float tiempoFinal ){
     
-    _lineal = map( tiempoActual, 0, tiempoFinal, 0.0, 1.0 );// es lo mismo que lerp( 0, tiempoFinal, tiempoActual / tiempoFinal );
-    _cuadrada = lerp( 0, tiempoFinal, pow( tiempoActual / tiempoFinal, 2 ) );
+    _lineal = calcularLineal? map( tiempoActual, 0, tiempoFinal, 0.0, 1.0 ) : 1.0;// es lo mismo que lerp( 0, tiempoFinal, tiempoActual / tiempoFinal );
+    _cuadrada = calcularCuadrada? lerp( 0, tiempoFinal, pow( tiempoActual / tiempoFinal, 2 ) ) : 1.0;
     
-    float t = tiempoActual;
-    _outBack = lerp( 0, tiempoFinal, ((t=t/tiempoFinal-1)*t*((s+1)*t+s) + 1) );
+    if( calcularOutBack ){
+      float t = tiempoActual;
+      _outBack = lerp( 0, tiempoFinal, ((t=t/tiempoFinal-1)*t*((S+1)*t+S) + 1) );
+    }else _outBack = 1.0;
     
-    float tempS = s;
-    t = tiempoActual;
-    _inOutBack = (t/=tiempoFinal/2) < 1?
-    lerp( 0, tiempoFinal, 1./2*(t*t*(((tempS*=(1.525f))+1)*t - tempS)) ) : 
-    lerp( 0, tiempoFinal, 1./2*((t-=2)*t*(((tempS*=(1.525f))+1)*t + tempS) + 2) );
+    if( calcularInOutBack ){
+      float tempS = S;
+      float t = tiempoActual;
+      _inOutBack = (t/=tiempoFinal/2) < 1?
+      lerp( 0, tiempoFinal, 1./2*(t*t*(((tempS*=(1.525f))+1)*t - tempS)) ) : 
+      lerp( 0, tiempoFinal, 1./2*((t-=2)*t*(((tempS*=(1.525f))+1)*t + tempS) + 2) );
+    }else _inOutBack = 1.0;
     
   }
   

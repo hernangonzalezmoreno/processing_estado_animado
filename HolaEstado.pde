@@ -2,7 +2,7 @@ class HolaEstado extends EstadoAnimado{
   
   HolaEstado(){
     super( transicion, transicion );
-    activarAnimaciones( true , true, true, true );
+    activarAnimaciones( false , false, true, true );
   }
   
   void contenido( float lineal, float cuadrada, float outBack, float inOutBack ){

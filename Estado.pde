@@ -69,30 +69,3 @@ abstract class Estado{
   }
   
 }
-
-abstract class EstadoTransparencia extends Estado{
-  
-  EstadoTransparencia( int tiempoIniciar, int tiempoFinalizar ){
-    super( tiempoIniciar, tiempoFinalizar );
-  }
-  
-  void iniciar(){
-    super.iniciar();
-    int tiempoAux = estado.equals( ESTADO_INICIAR )? tiempo : TIEMPO_INICIAR ;
-    float alfa = map( tiempoAux, 0, TIEMPO_INICIAR, 0, 255 );
-    contenido( alfa );
-  }
-  
-  void activo(){
-    contenido( 255 );
-  }
-  
-  void finalizar(){
-    super.finalizar();
-    int tiempoAux = estado.equals( ESTADO_FINALIZAR )? tiempo : TIEMPO_FINALIZAR ;
-    float alfa = map( tiempoAux, 0, TIEMPO_FINALIZAR, 255, 0 );
-    contenido( alfa );
-  }
-  
-  abstract void contenido( float alfa );
-}

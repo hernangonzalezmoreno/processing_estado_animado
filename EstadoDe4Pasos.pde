@@ -1,11 +1,13 @@
+enum ESTADO_DE_4_PASOS{
+  Iniciar,
+  Activo,
+  Finalizar,
+  Desactivo
+}
+
 abstract class EstadoDe4Pasos{
   
-  String estado;
-  static final String
-  ESTADO_INICIAR = "iniciar",
-  ESTADO_ACTIVO = "activo",
-  ESTADO_FINALIZAR = "finalizar",
-  ESTADO_DESACTIVO = "desactivo";
+  ESTADO_DE_4_PASOS estado;
   
   int tiempo;
   final int TIEMPO_INICIAR, TIEMPO_FINALIZAR;
@@ -13,26 +15,26 @@ abstract class EstadoDe4Pasos{
   EstadoDe4Pasos( int tiempoIniciar, int tiempoFinalizar ){
     TIEMPO_INICIAR = tiempoIniciar;
     TIEMPO_FINALIZAR = tiempoFinalizar;
-    estado = ESTADO_INICIAR;
+    estado = ESTADO_DE_4_PASOS.Iniciar;
   }
   
-  String getEstado(){
+  ESTADO_DE_4_PASOS getEstado(){
     return estado;
   }
   
   void ejecutar(){consola.println( getClass().getSimpleName() );
     pushStyle();
     switch( estado ){
-      case ESTADO_INICIAR:
+      case Iniciar:
         iniciar();
         break;
-      case ESTADO_ACTIVO:
+      case Activo:
         activo();
         break;
-      case ESTADO_FINALIZAR:
+      case Finalizar:
         finalizar();
         break;
-      case ESTADO_DESACTIVO:
+      case Desactivo:
         desactivo();
         break;
     }
@@ -42,7 +44,7 @@ abstract class EstadoDe4Pasos{
   void iniciar(){
     tiempo += reloj.getDeltaMillis();
     if( tiempo >= TIEMPO_INICIAR ){
-      estado = ESTADO_ACTIVO;
+      estado = ESTADO_DE_4_PASOS.Activo;
       tiempo = 0;
     }
   }
@@ -52,7 +54,7 @@ abstract class EstadoDe4Pasos{
   void finalizar(){
     tiempo += reloj.getDeltaMillis();
     if( tiempo >= TIEMPO_FINALIZAR ){
-      estado = ESTADO_DESACTIVO;
+      estado = ESTADO_DE_4_PASOS.Desactivo;
       tiempo = 0;
     }
   }
@@ -60,12 +62,12 @@ abstract class EstadoDe4Pasos{
   void desactivo(){}
   
   void eventoDeInteraccion( char llave, int keyCode ){
-    if( !estado.equals( ESTADO_ACTIVO ) ) return;
+    if( !estado.equals( ESTADO_DE_4_PASOS.Activo ) ) return;
     eventoDeInteraccion( llave );
   }
   
   void eventoDeInteraccion( char llave ){
-    if( !estado.equals( ESTADO_ACTIVO ) ) return;
+    if( !estado.equals( ESTADO_DE_4_PASOS.Activo ) ) return;
   }
   
 }

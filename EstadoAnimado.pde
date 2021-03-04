@@ -44,7 +44,7 @@ abstract class EstadoAnimado extends EstadoDe4Pasos{
   
   void iniciar(){
     super.iniciar();
-    float tiempoAux = float( estado.equals( ESTADO_INICIAR )? tiempo : TIEMPO_INICIAR );
+    float tiempoAux = float( estado.equals( ESTADO_DE_4_PASOS.Iniciar )? tiempo : TIEMPO_INICIAR );
     calcularAnimaciones( tiempoAux, (float) TIEMPO_INICIAR );
     contenido( _lineal, _cuadrada, _outBack, _inOutBack );
   }
@@ -55,7 +55,7 @@ abstract class EstadoAnimado extends EstadoDe4Pasos{
   
   void finalizar(){
     super.finalizar();
-    float tiempoAux = float( estado.equals( ESTADO_FINALIZAR )? tiempo : TIEMPO_FINALIZAR );
+    float tiempoAux = float( estado.equals( ESTADO_DE_4_PASOS.Finalizar )? tiempo : TIEMPO_FINALIZAR );
     calcularAnimaciones( tiempoAux, (float) TIEMPO_FINALIZAR );
     contenido( _lineal, _cuadrada, _outBack, _inOutBack );
   }

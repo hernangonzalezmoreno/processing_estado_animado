@@ -17,7 +17,7 @@ void draw(){
   for( int i = estados.size() - 1; i >= 0; i-- ){
     estados.get( i ).ejecutar();
     consola.println( "Estado: " + estados.get( i ).estado );
-    if( estados.get( i ).getEstado().equals( EstadoDe4Pasos.ESTADO_DESACTIVO ) )
+    if( estados.get( i ).getEstado().equals( ESTADO_DE_4_PASOS.Desactivo ) )
       estados.remove( i );
   }
 

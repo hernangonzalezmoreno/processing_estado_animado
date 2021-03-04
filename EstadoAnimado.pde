@@ -1,4 +1,4 @@
-abstract class EstadoAnimado extends Estado{
+abstract class EstadoAnimado extends EstadoDe4Pasos{
   
   static final float S = 1.70158f;
   

@@ -1,4 +1,4 @@
-abstract class Estado{
+abstract class EstadoDe4Pasos{
   
   String estado;
   static final String
@@ -10,7 +10,7 @@ abstract class Estado{
   int tiempo;
   final int TIEMPO_INICIAR, TIEMPO_FINALIZAR;
     
-  Estado( int tiempoIniciar, int tiempoFinalizar ){
+  EstadoDe4Pasos( int tiempoIniciar, int tiempoFinalizar ){
     TIEMPO_INICIAR = tiempoIniciar;
     TIEMPO_FINALIZAR = tiempoFinalizar;
     estado = ESTADO_INICIAR;

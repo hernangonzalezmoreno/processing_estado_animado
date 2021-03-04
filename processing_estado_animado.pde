@@ -1,6 +1,6 @@
 Reloj reloj;
 Consola consola;
-ArrayList<Estado> estados = new ArrayList<Estado>();
+ArrayList<EstadoDe4Pasos> estados = new ArrayList<EstadoDe4Pasos>();
 
 int transicion = 500;
 
@@ -17,7 +17,7 @@ void draw(){
   for( int i = estados.size() - 1; i >= 0; i-- ){
     estados.get( i ).ejecutar();
     consola.println( "Estado: " + estados.get( i ).estado );
-    if( estados.get( i ).getEstado().equals( Estado.ESTADO_DESACTIVO ) )
+    if( estados.get( i ).getEstado().equals( EstadoDe4Pasos.ESTADO_DESACTIVO ) )
       estados.remove( i );
   }
 
@@ -26,7 +26,7 @@ void draw(){
 
 void keyPressed(){
   if( estados.size() > 0 ){
-    for( Estado e : estados )
+    for( EstadoDe4Pasos e : estados )
       e.eventoDeInteraccion( key, keyCode );
   }else{
     estados.add( new HolaEstado() );

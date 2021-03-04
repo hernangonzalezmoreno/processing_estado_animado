@@ -21,9 +21,9 @@ class HolaEstado extends EstadoAnimado{
     String texto = "Hola!";
     float mitadAnchoTexto = textWidth( texto ) * 0.5;
     
-    if( estado.equals( Estado.ESTADO_INICIAR ) || estado.equals( Estado.ESTADO_ACTIVO ) ){
+    if( estado.equals( EstadoDe4Pasos.ESTADO_INICIAR ) || estado.equals( EstadoDe4Pasos.ESTADO_ACTIVO ) ){
       text( texto, -mitadAnchoTexto + outBack * (width * 0.5 + mitadAnchoTexto ), height * 0.5 );
-    }else if( estado.equals( Estado.ESTADO_FINALIZAR ) ){
+    }else if( estado.equals( EstadoDe4Pasos.ESTADO_FINALIZAR ) ){
       text( texto, width * 0.5 + inOutBack * (width * 0.5 + mitadAnchoTexto ), height * 0.5 );
     }
     
@@ -31,7 +31,7 @@ class HolaEstado extends EstadoAnimado{
   
   void eventoDeInteraccion( char llave ){
     if( !estado.equals( ESTADO_ACTIVO ) ) return;
-    estado = Estado.ESTADO_FINALIZAR;
+    estado = EstadoDe4Pasos.ESTADO_FINALIZAR;
   }
   
 }
